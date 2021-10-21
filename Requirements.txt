@@ -1,0 +1,18 @@
+Application Name: Invo Home Services
+
+User-Types:
+	Admin (Manages the whole database operations for application, have complete access of data)
+	User (end user who want to use the services provided by the organization)
+	Sellers (Sellers that provide the services, these sellers are of company)
+
+Responsibilities:
+	Admin: 
+		Add, update, delete (product, user and sellers)
+	User:
+		post order, cancel order, review, view pending orders,
+	Seller:
+		view order, accept order request, cancel order request,
+
+Key-features:
+	maps, real-time notification,  alot nearest seller
+		
