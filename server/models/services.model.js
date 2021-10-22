@@ -4,9 +4,9 @@ const Schema = mongooes.Schema;
 
 const Service = new Schema(
   {
-    category: { type: String, required: true },
-    subCategory: { type: String, required: true },
-    services: [{ type: mongooes.Schema.Types.ObjectId, ref: 'products' }],
+    category: { type: String, required: true, unique: true },
+    subCategory: { type: String, required: true, unique: true },
+    products: [{ type: mongooes.Schema.Types.ObjectId, ref: 'products' }],
   },
   {
     timestamps: false,

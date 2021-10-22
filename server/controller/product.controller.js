@@ -23,7 +23,7 @@ const createProduct = async (req, res, _next) => {
   }
 };
 
-const getAllProducts = (req, res, _next) => {
+const getAllProducts = async (req, res, _next) => {
   try {
     const result = await Product.find();
     if (!result) throw new Error('No product found');
@@ -43,18 +43,17 @@ const getAllProducts = (req, res, _next) => {
   }
 };
 
-const updateProductById = (req, res, _next) => {
+const updateProductById = async (req, res, _next) => {
   try {
     const { body } = req;
     if (!body) throw new Error('Please attach the body');
-    const toUpdate = user.find({ _id: req.params.id });
+    const toUpdate = await Product.find({ _id: req.params.id });
     if (!toUpdate) throw new Error('No such user found');
     toUpdate = body;
     return res.status(200).json({
       success: true,
       status: 200,
       message: 'Product updated',
-      
     });
   } catch (err) {
     console.log(err.message);
@@ -66,8 +65,18 @@ const updateProductById = (req, res, _next) => {
   }
 };
 
-const deleteProduct = (req, res, _next) => {
+const deleteProduct = async (req, res, _next) => {
   try {
+    const { id } = req.params;
+    if (!id) throw new Error('Please attach the Id to path');
+    const deletedProduct = await Product.findOneAndDelete({ _id: id });
+    console.log(deletedProduct);
+    if (!deletedProduct) throw new Error('No such user exsits');
+    return res.status(200).json({
+      success: true,
+      status: 200,
+      message: 'Product Deleted',
+    });
   } catch (err) {
     console.log(err.message);
     return res.status(404).json({

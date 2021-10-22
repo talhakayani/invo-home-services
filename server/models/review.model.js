@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 
 const Review = new Schema(
   {
-    userId: { type: String, required: true },
-    orderId: { type: String, required: true },
-    productId: { type: String, required: true },
+    users: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
+    orders: { type: mongoose.Schema.Types.ObjectId, ref: 'orders' },
+    sellers: { type: mongoose.Schema.Types.ObjectId, ref: 'sellers' },
+    products: { type: mongoose.Schema.Types.ObjectId, ref: 'products' },
     reviewDescription: { type: String, required: false },
     reviewRating: { type: Number, required: true },
   },
